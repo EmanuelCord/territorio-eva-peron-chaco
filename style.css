@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  margin: 0;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+main > div {
+  width: 100%;
+  flex: 1;
+  grid-template-rows: minmax(0, 1fr);
+  min-height: 0;
+  height: 100%;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  max-height: none;
+}
+
+.map-shell {
+  position: relative;
+  z-index: 0;
+  min-height: 320px;
+}
+
+@media (max-width: 1024px) {
+  main > div {
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px minmax(320px, 1fr);
+  }
+
+  .map-shell {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  main {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  main > div {
+    gap: 0.75rem;
+    grid-template-rows: 50px minmax(0, 1fr);
+  }
+
+  aside {
+    position: relative;
+    z-index: 5;
+    order: 1;
+    width: 100%;
+    min-height: 46px;
+    max-height: 50px;
+  }
+
+  aside > div:first-child {
+    height: 50px;
+    min-height: 46px;
+    max-height: 50px;
+  }
+
+  aside:has(#toggle-localidades[aria-expanded="true"]) #filters-panel:not(.hidden) {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    z-index: 20;
+    display: flex;
+    width: 100%;
+    max-height: min(70dvh, 600px);
+    flex-direction: column;
+    overflow-y: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    background: #ffffff;
+    box-shadow: 0 12px 28px rgb(15 23 42 / 20%);
+  }
+
+  .map-shell {
+    min-height: 0;
+  }
+
+  #map {
+    order: 2;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+  }
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: #ffffff;
+}
+
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  background: #dfeef5;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+@media (max-width: 1024px) {
+  #map {
+    height: 100%;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  #map {
+    height: 100%;
+    min-height: 0;
+  }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa del Chaco</title>
+    <meta name="description" content="Mapa de unidades territoriales de la Agrupación Eva Perón Chaco" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                900: '#002139',
+                50: '#f2f2f2'
+              }
+            },
+            fontFamily: {
+              sans: ['Montserrat', 'ui-sans-serif', 'system-ui', 'sans-serif']
+            }
+          }
+        }
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css?v=2" />
+  </head>
+  <body class="min-h-screen w-screen overflow-x-hidden bg-slate-100 text-slate-800 antialiased">
+    <header class="bg-brand-900 text-brand-50 shadow-sm">
+      <div class="mx-auto flex w-full max-w-7xl items-center justify-center gap-3 px-3 py-3 sm:px-6 lg:px-8">
+        <img src="assets/logo-white.png" alt="Logo Agrupación Eva Perón" class="h-10 w-auto max-w-[120px] object-contain sm:h-12 sm:max-w-[160px]" />
+        <h1 class="text-center text-sm leading-tight font-extrabold tracking-[0.02em] text-brand-50 sm:text-base lg:text-2xl">
+          Unidades Territoriales de la Agrupación Eva Perón Chaco
+        </h1>
+      </div>
+    </header>
+
+    <main class="flex w-full flex-1 items-stretch justify-center px-3 py-3 sm:px-6 lg:px-8">
+      <div class="mx-auto grid w-full max-w-7xl flex-1 gap-3 lg:grid-cols-[minmax(0,1fr)_320px]">
+        <aside class="order-1 flex min-h-0 flex-col rounded-2xl border border-slate-200 bg-white/95 shadow-[0_10px_25px_rgba(15,23,42,0.08)] backdrop-blur-sm lg:order-2">
+          <div class="flex h-[50px] min-h-[46px] max-h-[50px] w-full items-center justify-between border-b border-slate-200 bg-slate-50/90 px-3 lg:h-[50px] lg:max-h-[50px]">
+            <h2 class="text-[0.7rem] font-bold uppercase tracking-[0.12em] text-slate-700">LOCALIDADES</h2>
+            <button
+              id="toggle-localidades"
+              type="button"
+              class="rounded-full border border-slate-300 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-slate-700 shadow-sm transition active:scale-95 lg:hidden"
+              aria-expanded="false"
+            >
+              FILTRAR
+            </button>
+          </div>
+          <div id="filters-panel" class="hidden p-2.5 lg:flex lg:min-h-0 lg:flex-1 lg:flex-col">
+            <input
+              id="localidad-search"
+              type="text"
+              placeholder="Buscar localidad..."
+              class="mb-2.5 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-brand-900 focus:ring-2 focus:ring-brand-900/10"
+            />
+            <ul id="localidad-list" class="max-h-[52vh] min-h-0 flex-1 space-y-1 overflow-y-auto pr-1 lg:max-h-none"></ul>
+          </div>
+        </aside>
+
+        <div class="map-shell order-2 flex min-h-0 flex-1 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_10px_25px_rgba(15,23,42,0.12)] lg:order-1">
+          <div id="map" aria-label="Mapa del Chaco con localidades" class="h-full min-h-[320px] w-full flex-1"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-brand-900 text-brand-50">
+      <div class="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-2 px-4 py-4 text-sm font-normal tracking-[0.02em] sm:flex-row sm:items-center sm:px-6 lg:px-8">
+        <div class="text-base font-bold">Referente: Cristian Peralta</div>
+        <div class="flex items-center gap-2 text-sm font-light sm:justify-end">
+          <span>Desarrollado por:</span>
+          <a class="underline underline-offset-2 transition-opacity hover:opacity-80" href="https://emanuelcord.github.io/cv/" target="_blank" rel="noreferrer">Emanuel Cordova</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
